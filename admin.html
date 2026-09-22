@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title>
+<style>body{font-family:sans-serif;padding:15px;background:#f0f0e8;max-width:500px;margin:auto}input,textarea,select{width:100%;padding:12px;margin:7px 0;border-radius:8px;border:1px solid #aaa}button{background:#1a5d1a;color:#fff;padding:14px;border:0;border-radius:8px;width:100%;font-weight:bold}</style>
+</head><body>
+<div id="a"><h2>Admin Faso-Concours</h2><input id="p" type="password" placeholder="Mot de passe"><button onclick="if(document.getElementById('p').value==='faso2026'){document.getElementById('a').style.display='none';document.getElementById('b').style.display='block';L()}else alert('Mauvais mdp')">Entrer</button></div>
+<div id="b" style="display:none"><h3>Ajouter concours</h3>
+<input id="t" placeholder="Titre ex: ENAREF 2026">
+<input id="o" placeholder="Postes ex: 100">
+<input id="d" type="date"><input id="l" placeholder="Lien concours.gov.bf">
+<select id="y"><option>Direct</option><option>Professionnel</option><option>Bourse</option></select>
+<button onclick="S()">Ajouter au site</button><div id="ls" style="margin-top:15px"></div>
+<button onclick="location.href='/'" style="background:#333;margin-top:15px">Voir site</button></div>
+<script>function L(){let c=JSON.parse(localStorage.getItem('c')||'[]');document.getElementById('ls').innerHTML=c.map((x,i)=>`<div style="background:#fff;padding:8px;margin:4px;border-radius:6px">${x.t} - ${x.d} <span onclick="D(${i})" style="color:red"> X</span></div>`).join('')}function S(){let c=JSON.parse(localStorage.getItem('c')||'[]');c.push({t:document.getElementById('t').value,o:document.getElementById('o').value,d:document.getElementById('d').value,l:document.getElementById('l').value,y:document.getElementById('y').value});localStorage.setItem('c',JSON.stringify(c));alert('Ajouté ! Bravo !');L()}function D(i){let c=JSON.parse(localStorage.getItem('c')||'[]');c.splice(i,1);localStorage.setItem('c',JSON.stringify(c));L()}</script></body></html>
