@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faso-Concours | Burkina Faso</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#0a7a3d;--red:#ef2b2d;--bg:#f8faf7}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Outfit',sans-serif}
+body{background:var(--bg);color:#111}
+header{background:white;position:sticky;top:0;z-index:10;border-bottom:3px solid var(--green);padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700;font-size:22px;color:var(--green)} .logo span{color:var(--red)}
+.hero{background:linear-gradient(135deg,var(--green),#064d26);color:white;padding:50px 20px;text-align:center}
+.hero h1{font-size:32px;margin-bottom:10px}
+.hero p{opacity:0.9;font-size:15px;margin-bottom:18px}
+.search{max-width:500px;margin:0 auto;display:flex;background:white;border-radius:12px;overflow:hidden;padding:4px}
+.search input{flex:1;border:none;padding:12px 16px;outline:none;font-size:16px}
+.search button{background:var(--red);color:white;border:none;padding:12px 20px;border-radius:8px;font-weight:600}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.filters{display:flex;gap:10px;overflow:auto;padding:10px 0}
+.filters button{white-space:nowrap;border:1px solid #ddd;background:white;padding:8px 16px;border-radius:20px}
+.filters button.active{background:var(--green);color:white;border-color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:10px}
+.card{background:white;border-radius:16px;padding:18px;box-shadow:0 4px 12px rgba(0,0,0,0.05);border-left:5px solid var(--green)}
+.badge{display:inline-block;font-size:11px;padding:4px 8px;border-radius:6px;font-weight:700;margin-bottom:8px}
+.badge.ouvert{background:#e6f9ed;color:var(--green)} .badge.bientot{background:#fff7d6;color:#a07c00} .badge.clos{background:#ffe0e0;color:var(--red)}
+.meta{display:flex;justify-content:space-between;font-size:12px;color:#888;margin-top:12px;border-top:1px solid #f0f0f0;padding-top:10px}
+.btn{display:block;text-align:center;margin-top:12px;background:#111;color:white;padding:10px;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px}
+footer{text-align:center;padding:40px 20px;color:#888;font-size:13px}
+</style>
+</head>
+<body>
+<header><div class="logo">FASO<span>-CONCOURS</span>.BF</div><div style="font-size:12px;font-weight:600">BURKINA FASO</div></header>
+<section class="hero">
+<h1>Tous les concours du Burkina au même endroit</h1>
+<p>Ne rate plus aucun concours direct, pro, militaire, ou bourses.</p>
+<div class="search"><input id="q" placeholder="Rechercher : ENA, ENSOA..." oninput="filtrer()"><button onclick="filtrer()">Chercher</button></div>
+</section>
+<div class="container">
+<div class="filters">
+<button class="active" onclick="setCat('all',this)">Tous</button>
+<button onclick="setCat('Direct',this)">Directs</button>
+<button onclick="setCat('Professionnel',this)">Pros</button>
+<button onclick="setCat('Militaire',this)">Militaires</button>
+<button onclick="setCat('Bourse',this)">Bourses</button>
+</div>
+<div class="grid" id="grid"></div>
+</div>
+<footer>Faso-Concours © 2026 - Pour la jeunesse Burkinabè</footer>
+<script>
+const concours=[
+{name:"ENA - Cycle A",cat:"Direct",statut:"ouvert",date:"15 Juin 2026",niveau:"Licence",desc:"École Nationale d'Administration."},
+{name:"ENSOA 2026",cat:"Militaire",statut:"ouvert",date:"30 Mai 2026",niveau:"BAC",desc:"Sous-Officiers d'Active - 500 places."},
+{name:"Gendarmerie",cat:"Militaire",statut:"bientot",date:"10 Juin 2026",niveau:"BEPC",desc:"1200 gendarmes auxiliaires."},
+{name:"Douanes",cat:"Direct",statut:"ouvert",date:"25 Mai 2026",niveau:"BAC",desc:"Contrôleurs des douanes."},
+{name:"Santé IDE/SFE",cat:"Direct",statut:"ouvert",date:"05 Juin 2026",niveau:"BAC",desc:"Infirmiers et Sages-femmes."},
+{name:"Police Nationale",cat:"Militaire",statut:"bientot",date:"20 Juin 2026",niveau:"BEPC/BAC",desc:"Sous-officiers et Commissaires."},
+{name:"Bourse Maroc",cat:"Bourse",statut:"ouvert",date:"15 Juillet 2026",niveau:"BAC+",desc:"Études supérieures au Maroc."},
+{name:"IAC - Professeurs",cat:"Direct",statut:"ouvert",date:"12 Juin 2026",niveau:"BAC",desc:"Instituteurs adjoints."},
+{name:"ENAREF",cat:"Professionnel",statut:"clos",date:"Clôturé",niveau:"BAC",desc:"Finances publiques."},
+];
+let cat='all';
+function setCat(c,b){cat=c;document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');filtrer();}
+function filtrer(){
+const q=document.getElementById('q').value.toLowerCase();
+const g=document.getElementById('grid');g.innerHTML='';
+concours.filter(x=>(cat==='all'||x.cat===cat)&&(x.name.toLowerCase().includes(q))).forEach(c=>{
+g.innerHTML+=`<div class="card"><span class="badge ${c.statut}">${c.statut.toUpperCase()}</span><h3>${c.name}</h3><p>${c.desc}</p><div class="meta"><span>${c.date}</span><span>${c.niveau}</span><span>${c.cat}</span></div><a class="btn" href="#">Voir détails</a></div>`;
+});
+}
+filtrer();
+</script>
+</body>
+</html>
