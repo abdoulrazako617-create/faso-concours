@@ -1,26 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Faso-Concours | Burkina Faso</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>body{background:#f8fafc}</style>
+<title>Faso Concours</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1025456283613831" crossorigin="anonymous"></script>
 </head>
 <body>
-<header class="bg-green-700 text-white p-4 sticky top-0"><div class="max-w-5xl mx-auto flex justify-between"><h1 class="font-black">🇧🇫 Faso-Concours</h1><a href="/admin.html" class="bg-white text-green-700 px-3 py-1 rounded-full text-xs font-bold">Admin</a></div></header>
-<div class="max-w-5xl mx-auto p-4">
-<div class="bg-white rounded-xl shadow p-4 mt-4"><input id="search" placeholder="Rechercher ENAREF, Douane..." class="w-full border p-3 rounded-lg" oninput="filtrer()"><p class="text-xs text-gray-500 mt-2"><span id="count">0</span> concours</p></div>
-<div style="background:#fff3cd;border:2px dashed #ffc107;padding:15px;text-align:center;margin:15px 0;border-radius:12px;"><p style="font-size:11px;color:#856404;">PUBLICITE</p><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-<div id="liste" class="grid gap-4 mt-4"></div>
-</div>
-<script>
-const defaut=[{titre:"ENAREF Cycle A",postes:"50 postes",date:"30 Oct 2026",lien:"https://www.concours.gov.bf",type:"Direct"},{titre:"ENAM Greffiers",postes:"80 postes",date:"15 Nov 2026",lien:"https://www.concours.gov.bf",type:"Direct"},{titre:"Douane Burkina",postes:"120 postes",date:"05 Dec 2026",lien:"https://www.concours.gov.bf",type:"Direct"}];
-function charger(){const s=JSON.parse(localStorage.getItem('concours')||'[]');return[...s,...defaut];}
-function afficher(d){document.getElementById('count').innerText=d.length;document.getElementById('liste').innerHTML=d.map(c=>`<div class="bg-white rounded-xl shadow p-4 border-l-4 border-green-600"><div class="flex justify-between"><div><h3 class="font-bold">${c.titre}</h3><p class="text-sm text-gray-600">📅 ${c.date} • 👥 ${c.postes}</p></div><a href="${c.lien}" target="_blank" class="bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-bold">Voir</a></div></div>`).join('');}
-function filtrer(){const q=document.getElementById('search').value.toLowerCase();const f=charger().filter(c=>c.titre.toLowerCase().includes(q));afficher(f);}
-afficher(charger());
-</script>
+<h1>FASO-CONCOURS</h1>
+<p>Bienvenue sur la plateforme de preparation aux concours du Burkina Faso</p>
 </body>
 </html>
