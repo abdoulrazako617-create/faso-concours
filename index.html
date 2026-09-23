@@ -1,5 +1,35 @@
-<!DOCTYPE html>window.onload = function() {
-  setTimeout(parler, 1000); // la voix parle 1 seconde après l'ouverture
+<!DOCTYPE <script>
+let aDejaParle = false;
+
+function parler() {
+  if (aDejaParle) return;
+  aDejaParle = true;
+
+  const texte = "Bienvenue sur Faso Concours. Les résultats 2026 et les 137 concours à venir avec 12 995 postes sont déjà disponibles. Cliquez sur le concours que vous voulez pour voir les détails.";
+  
+  const voix = new SpeechSynthesisUtterance(texte);
+  voix.lang = 'fr-FR';
+  voix.rate = 0.9;
+  speechSynthesis.speak(voix);
+}
+
+// On attend que la personne touche l'écran une fois
+document.addEventListener('click', parler, { once: true });
+document.addEventListener('touchstart', parler, { once: true });
+
+// Et on garde ton bouton aussi au cas où
+function parlerBouton() {
+  aDejaParle = false;
+  parler();
+}
+</script>
+
+<!-- Ton bouton en haut -->
+<div style="background:#16a34a; padding:12px; text-align:center; border-radius:10px; margin-bottom:10px;">
+  <button onclick="parlerBouton()" style="background:white; color:green; padding:10px 20px; border:none; border-radius:20px; font-weight:bold; cursor:pointer;">
+    🔊 Cliquez ici pour écouter
+  </button>
+</div>
 }
 <html lang="fr">
 <head>
