@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://faso-concours.vercel.app/sitemap.xml
